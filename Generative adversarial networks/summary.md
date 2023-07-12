@@ -35,7 +35,7 @@ GAN은 2014년, Ian Goodfellow의 "Generative Adversarial Network"라는 논문�
 - discriminative model은 경찰, generative model은 위조지폐를 만드는 사람에 비유하면 쉬움
   - 이런 게임으로 인한 두 model간의 경쟁은 위조 데이터와 진짜 데이터를 구분이 불가능한 방향으로 학습하게 지도가능
 
-<img src="https://github.com/mingii4922/Generative-Adversarial-Network-GAN-/assets/79297596/9a3ad842-c0d9-4ce2-8976-e437408e5fe0" height=200 width=800></center>
+<img src="https://github.com/mingii4922/Generative-Adversarial-Network-GAN-/assets/79297596/9a3ad842-c0d9-4ce2-8976-e437408e5fe0" height=100 width=800></center>
 
 |수식|설명|
 |---|---|

@@ -68,4 +68,38 @@ if $D(G(z)) == 0, D(x) == 1:$
   - $log(D(x)) + log(1-D(G(z))) = log(1) + log(1-0) = 2log(1)$
 
 ---
-### Background
+### Architecture
+
+
+<img src="https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/111b8e33-6440-4c49-aaec-f2aaf14f0a4e" height=200 width=700></center>
+
+- 실제 동작과정은 다음과 같음
+  * Generator의 input으로 latent vector $z$를 넣어 가짜 이미지를 생성하고, 실제 이미지와 generator로 생성된 가짜 이미지를 discriminator가 비교(판별)하는 구조
+  * discriminator를 통해 추출된 결과(loss)를 가지고 generator와 discriminator가 역전파를 통해 network 학습
+
+- generative model과 discriminative model을 모두 충분히 학습하고 나면 $p_{data} = p_(g)$가 되는 지점에 도달 (global optimality of $p_g = p_{data}$ )
+  * discriminative model은 실제 데이터와 가짜 데이터를 구분할 수 없게 됨 ($D(x) = \frac{1}{2}$)
+
+---
+
+### Adversarial network
+
+* 매 iter에서 discriminator를 최적화 시키고 generator를 업데이트 시키는 것은 불가능하며, 유한한 크기의 데이터 셋 x를 가졌을 대 discriminator가 overfitting 될 수 있음
+  * 따라서 k번 만큼 discriminator를 업데이트하고, 한번의 generator를 업데이트하는 방식으로 진행
+
+<img src="https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/2ad4fd78-ae95-4635-b532-a4fba38c4015" height=300 width=700></center>
+
+
+> 1. 학습 초기: generator는 실제 데이터와 큰 차이를 보이기 때문에 discriminator가 높은 확률로 정답을 맞춤(빠르게 학습됨)
+   * **(위 그림)**: $log(1-D(G(z)))$를 minimize 하는 수식을 $log(D(G(Z)))$를 maximize 하는 방식으로 변경
+
+---
+
+#### 장점
+- Markov chain이 필요하지 않고 역전파만 사용하여 학습할 수 있음
+- 학습 중에 추론이 필요하지 않고 미분 가능한 다양한 함수를 모델에 사용가능
+#### 단점
+- $p_{g}(x)$를 명시적으로 표현할 수 없음
+- 학습 중 discriminator가 generator와 잘 동기화되어야 함
+- generator가 충분한 다양성을 갖기 위해 많은 $z$ 값을 동일한 $x$ 값으로 축소하는 model collapse 현상이 발생할 수 있음
+  * 따라서 discriminator를 업데이트하지 않고 generator를 너무 많이 훈련하는 것은 안됨

@@ -2,7 +2,7 @@
 
 Goodfellow, Ian, et al. "Generative adversarial networks." Communications of the ACM 63.11 (2020): 139-144.
 
-Wang, Yan, et al. "3D conditional generative adversarial networks for high-quality PET image estimation at low dose." Neuroimage 174 (2018): 550-562. **(Conditional GAN)**
+Mirza, Mehdi, and Simon Osindero. "Conditional generative adversarial nets." arXiv preprint arXiv:1411.1784 (2014). **(Conditional GAN)**
 
 Isola, Phillip, et al. "Image-to-image translation with conditional adversarial networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017. **(Pix-to-pix)**
 

@@ -2,6 +2,9 @@
 
 ### Image-to-image translation with conditional adversarial networks, 2017, CVPR
 
+<img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/9e5a0135-5cfe-4ad2-8fd5-2308aa2e2972' width=900></center>
+
+  
 ----
 ### Abstract
 
@@ -53,14 +56,34 @@ architecture. In ICCV, 2015.
 
 #### Generator
 
+<img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/beace557-3b9a-47b1-9ded-6626a034aad8' width=700></center>
+
 - Encoder-decoder에 skip connection이 추가되어 feature를 직접 공유하는 **U-Net**을 사용
   - 이전 연구들은 autoencoder를 사용하지만, 많은 이미지 변환 문제의 경우 입출력 간 많은 양의 low-level information을 공유해야 함
 
+<img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/d00b505e-2b0f-4c3b-9d43-fff250c2dfa1' width=700></center>
+
+- 일반적인 image-to-image translation 문제를 해결하기 위해 입력과 출력이 외관상 달라보이지만, 입력과 출력이 모두 동일한 기본 구주의 렌더링 형태를 가진 형태로 구성됨
+  - 이는 이미지의 구조가 대략적으로 정렬되어 있다는 것을 고려하여 설계함
+
 #### Discriminator
+
+<img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/c90a48b3-3ef8-4afe-83b7-560dc622f1d6' width=500></center>
 
 - High-frequency structure를 모델링하도록 제한하고, L1 term이 low frequency 정보를 잡아내도록 역할 분담
 - **PatchGAN**을 사용하여 local image patch로 이미지를 제한적으로 관찰하며, 고주파 구조에 집중하도록 설계
 
+#### Objective
+
+
+<img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/60e912af-3565-4b88-90d4-717cee80ace3' width=900></center>
+
+$$\begin{aligned}
+  L_{GAN}(G,D) &= \mathbb{E}_{y} [log D(y)] + \\
+               &= \mathbb{E}_{x,z} [log(1-D(G(x,z))].\\
+  L_{L1}(G) &= \mathbb{E}_{x,y,z}[||y-G(x,z)||_{1}].
+               
+\end{aligned}$$
 
 
 #### Loss function
@@ -70,6 +93,10 @@ architecture. In ICCV, 2015.
   
 - L1 norm(Mahatten distance): 벡터의 모든 원소들의 차이의 절댓값을 합한 값
 - L2 norm(Euclidean distance): 벡터들의 모든 원소들의 차이의 제곱의 합을 루트로 씌워준 값
+
+
+
+
 
 #### Optimization
 

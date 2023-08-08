@@ -51,3 +51,5 @@ $F$: $Y$ domain의 이미지를 통해 $X$ domain의 이미지 생성 $(F(Y)=X)$
 
 ---
 ### Dataset
+
+- Dataset은 unpaired dataset을 활용

@@ -3,7 +3,7 @@
 ### Unpaired image-to-image translation using cycle-consistent adversarial networks CVPR, 2017
 
 ---
-### Intro
+### Introduction
 
 <img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/318d050a-7b3d-43af-94cc-33cecd3cc7a2' width=700></center>
 
@@ -37,7 +37,7 @@ $F$: $Y$ domain의 이미지를 통해 $X$ domain의 이미지 생성 $(F(Y)=X)$
 
 - 총 2개의 generator와 2개의 discriminator가 존재함
 
-#### Loss function
+#### Loss function-1
 
 <img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/c6dc6352-e6b9-43e7-88fa-78524e82f2db' width=700></center>
 
@@ -48,8 +48,24 @@ $F$: $Y$ domain의 이미지를 통해 $X$ domain의 이미지 생성 $(F(Y)=X)$
 - Generator 학습: $D_Y(G(x))$ 기준으로 설명
   - $G(x)$: $G$를 통해 $X$ domain의 이미지 x가 $Y$ domain으로 변환한 것을 의미
     - $G$가 잘 학습되었다면? $D_Y(G(x))$의 결과는 1 -> 잘 생성되어서 판별자를 속임
+- 논문에서는 adversarial loss를 통해 실험해보았지만, 
+
+#### Full objective function
+<img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/6202180b-26c4-4e8a-a907-7958ae269823' width=700></center>
+- Cycle-consistency loss: $G$에 의해 생성된 $G(x)$가 $F$에 의해 다시 원래 입력 $x$로 돌아갈 수 있도록 이미지를 변형시키는 network를 만드는 것이 목적 -> $F(G(x)) = x$
 
 ---
-### Dataset
+### Conclusion
 
-- Dataset은 unpaired dataset을 활용
+- 기존 pix-to-pix에서 발전하여 unpaired 데이터셋에 대해 매우 효과적으로 작동함
+- 본 논문에 포함된 모든 objective function은 기능상 필요함(cycle-consistency-loss)
+- 도메인 간 스타일 변환에 특화되어 있기 때문에 형태가 변환되어야 하는 주제에는 낮은 성능을 보임
+
+---
+### Limitations
+<img src='https://github.com/mingii4922/Generative-Adversarial-Network-GAN/assets/79297596/b6ec0b99-6810-4b30-8bca-b3319bdacc9d' width=700></center>
+
+- 색상과 질감을 변환하는데는 효과적이지만, 기하학적인 변환이 불가능하기 때문에 dog-cat으로 변형하는 경우 생성이미지를 원하는대로 만들지 못함
+- Dataset에 없는 분포를 가진 이미지를 가지고 생성하게 된다면, 성능이 하락함 (사람-얼룩말)
+- 여전이 Paired dataset과의 결과 차이가 존재함
+- Object의 경계를 인식하지 못하며, 사람의 객체에 얼룩말 형태의 무늬를 입히는 것을 발견
